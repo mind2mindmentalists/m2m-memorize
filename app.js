@@ -127,6 +127,10 @@
     return (lineText(line).match(/[A-Za-z0-9']+/g) || []).length;
   }
 
+  function isMemorizable(line) {
+    return maxLevel(lineText(line)) > 0;
+  }
+
   function sections() {
     return [...new Set(LINES.map((line) => line.section))];
   }
@@ -137,7 +141,7 @@
       const roleMatch = state.role === "both" || line.speaker === state.role;
       const sectionMatch = state.section === "all" || line.section === state.section;
       const skipMatch = includeSkipped || !skipped.has(line.id);
-      return roleMatch && sectionMatch && skipMatch;
+      return roleMatch && sectionMatch && skipMatch && isMemorizable(line);
     });
   }
 
@@ -363,8 +367,9 @@
     return lines.reduce(
       (stats, line) => {
         const progress = progressFor(line.id);
+        const max = maxLevel(lineText(line));
         stats.words += lineWords(line);
-        if (progress.level >= maxLevel(lineText(line))) stats.mastered += 1;
+        if (max > 0 && progress.level >= max) stats.mastered += 1;
         if (isDue(line)) stats.due += 1;
         if (focused.has(line.id)) stats.focus += 1;
         if (progress.misses > 0) stats.trouble += 1;

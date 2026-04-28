@@ -94,6 +94,10 @@ def main() -> None:
             speaker = dialogue.group(1).lower()
             speaker_label = dialogue.group(1)
             text, inline_cues, leading_stage = extract_inline_cues(dialogue.group(2))
+            if not text:
+                recent_stage.extend(inline_cues)
+                recent_stage = recent_stage[-3:]
+                continue
             cue_bits = recent_stage[-2:] + inline_cues
             cue = " ".join(bit for bit in cue_bits if bit)
             key = f"{section}|{beat}|{speaker}|{text}"
