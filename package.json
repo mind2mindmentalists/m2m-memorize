@@ -1,0 +1,11 @@
+{
+  "name": "m2m-memorize",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A browser-based memorization tool for the Mind2Mind Vegas script.",
+  "scripts": {
+    "extract": "python3 tools/extract_script_data.py",
+    "encrypt": "node tools/encrypt_payload.mjs",
+    "serve": "python3 server.py"
+  }
+}

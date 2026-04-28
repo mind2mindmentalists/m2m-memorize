@@ -1,0 +1,18 @@
+{
+  "name": "Mind2Mind Memorize",
+  "short_name": "M2M",
+  "description": "Practice and edit the Mind2Mind Vegas script.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0c",
+  "theme_color": "#0b0b0c",
+  "icons": [
+    {
+      "src": "icons/m2m-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
